@@ -2,18 +2,46 @@
     var $ = function(s) {
         return new Sugar(s);
     }
-    var Sugar = function(s) {
-        //若为空则抛出异常
-        this.r = document.querySelector(s || '')
+    var Sugar = function(els) {
+        var nodes = document.querySelectorAll(els),
+            i = 0,
+            length
+        this.length = nodes.length
+        for (; length = nodes.length, i < length; i++) {
+            this[i] = nodes[i];
+        }
         return this
-            // return r.length === 1 ? r : r[0]
     }
     $.fn = Sugar.prototype = {
-        on: function(event, fn) {
-            this.addEventListener(event, fn)
+        hide() {
+            var length = this.length
+            while (length--) {
+                this[length].style.display = 'none'
+            }
+            return this;
         },
         show: function() {
+            var length = this.length
+            while (length--) {
+                this[length].style.display = 'block'
+            }
             return this;
+        },
+        css: function(...args) {
+            var length = this.length,
+                argCount = arguments.length,
+                value, attr, value
+            while (length--) {
+                if (argCount > 1) {
+                    attr = args[0]
+                    value = args[1]
+                    this[length].style[attr] = value
+                    return this
+                } else {
+                    value = window.getComputedStyle(this[length], null)[args]
+                    return value
+                }
+            }
         }
     };
     if (!window.$)

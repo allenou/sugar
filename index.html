@@ -19,11 +19,11 @@
     <div id="sugar"></div>
     <script src="./sugar.js"></script>
     <script>
-        var sugar = $('#sugar')
-        sugar.show()
-        sugar.on('click', function(e) {
-            alert(1)
-        })
+        var sugar = $('#sugar');
+        sugar.hide()
+        sugar.show();
+        console.log(sugar.css('background-color'))
+        sugar.css('width', '500px')
     </script>
 </body>
 
