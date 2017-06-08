@@ -16,14 +16,22 @@
 </head>
 
 <body>
-    <div id="sugar"></div>
+    <div id="sugar">sugar</div>
+    <input type="text" id="password" value="dogou">
     <script src="./sugar.js"></script>
     <script>
         var sugar = $('#sugar');
+        var password = $('#password');
+
         sugar.hide()
         sugar.show();
         console.log(sugar.css('background-color'))
         sugar.css('width', '500px')
+        console.log(sugar.text())
+        password.val('914')
+        console.log(password.val())
+
+        console.log(sugar.html())
     </script>
 </body>
 

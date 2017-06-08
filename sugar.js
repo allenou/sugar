@@ -30,7 +30,7 @@
         css: function(...args) {
             var length = this.length,
                 argCount = arguments.length,
-                value, attr, value
+                value, attr
             while (length--) {
                 if (argCount > 1) {
                     attr = args[0]
@@ -41,6 +41,42 @@
                     value = window.getComputedStyle(this[length], null)[args]
                     return value
                 }
+            }
+        },
+        text(...args) {
+            var length = this.length,
+                argCount = arguments.length,
+                value
+            while (length--) {
+                if (argCount > 0) {
+                    this[length].innerHTML = args
+                    return this
+                } else {
+                    value = this[length].innerHTML
+                    return value
+                }
+            }
+        },
+        val(...args) {
+            var argCount = arguments.length,
+                value
+            if (argCount > 0) {
+                this[0].value = args
+                return this
+            } else {
+                value = this[0].value
+                return value
+            }
+        },
+        html(...args) {
+            var argCount = arguments.length,
+                value
+            if (argCount > 0) {
+                this[0].appendChild(args)
+                return this
+            } else {
+                value = this[0].childNodes
+                return value
             }
         }
     };
