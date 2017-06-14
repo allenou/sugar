@@ -8,30 +8,26 @@
     <title>Document</title>
     <style>
         #sugar {
-            width: 100px;
-            height: 100px;
+            /*width: 100px;
+            height: 100px;*/
+            /*background-color: lightblue;*/
+        }
+
+        .sugar {
             background-color: lightblue;
         }
     </style>
 </head>
 
 <body>
-    <div id="sugar">sugar</div>
+    <div class="sugar">sugar</div>
+    <div class="sugar">sugar</div>
+
     <input type="text" id="password" value="dogou">
     <script src="./sugar.js"></script>
     <script>
-        var sugar = $('#sugar');
-        var password = $('#password');
-
-        sugar.hide()
-        sugar.show();
-        console.log(sugar.css('background-color'))
+        var sugar = $('.sugar');
         sugar.css('width', '500px')
-        console.log(sugar.text())
-        password.val('914')
-        console.log(password.val())
-
-        console.log(sugar.html())
     </script>
 </body>
 

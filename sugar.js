@@ -22,14 +22,12 @@
             while (length--) {
                 this[length].style.display = 'none'
             }
-            return this;
         },
         show: function () {
             var length = this.length
             while (length--) {
                 this[length].style.display = 'block'
             }
-            return this;
         },
         css: function () {
             var length = this.length,
@@ -40,7 +38,6 @@
                     attr = args[0]
                     value = args[1]
                     this[length].style[attr] = value
-                    return this
                 } else {
                     value = window.getComputedStyle(this[length], null)[args[0]]
                     return value
@@ -54,7 +51,6 @@
             while (length--) {
                 if (args > 0) {
                     this[length].innerHTML = args
-                    return this
                 } else {
                     value = this[length].innerHTML
                     return value
@@ -66,7 +62,6 @@
                 value
             if (args > 0) {
                 this[0].value = args
-                return this
             } else {
                 value = this[0].value
                 return value
@@ -77,7 +72,6 @@
                 value
             if (args > 0) {
                 this[0].appendChild(args)
-                return this
             } else {
                 value = this[0].childNodes
                 return value
