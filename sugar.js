@@ -1,8 +1,8 @@
-(function() {
-    var $ = function(s) {
+(function () {
+    var $ = function (s) {
         return new Sugar(s);
     }
-    var Sugar = function(els) {
+    var Sugar = function (els) {
         var nodes = document.querySelectorAll(els),
             i = 0,
             length
@@ -12,6 +12,10 @@
         }
         return this
     }
+
+    function toArray(obj) {
+        return Array.prototype.slice.call(obj)
+    }
     $.fn = Sugar.prototype = {
         hide() {
             var length = this.length
@@ -20,35 +24,35 @@
             }
             return this;
         },
-        show: function() {
+        show: function () {
             var length = this.length
             while (length--) {
                 this[length].style.display = 'block'
             }
             return this;
         },
-        css: function(...args) {
+        css: function () {
             var length = this.length,
-                argCount = arguments.length,
-                value, attr
+                args = toArray(arguments),
+                attr, value
             while (length--) {
-                if (argCount > 1) {
+                if (args.length > 1) {
                     attr = args[0]
                     value = args[1]
                     this[length].style[attr] = value
                     return this
                 } else {
-                    value = window.getComputedStyle(this[length], null)[args]
+                    value = window.getComputedStyle(this[length], null)[args[0]]
                     return value
                 }
             }
         },
-        text(...args) {
+        text() {
             var length = this.length,
-                argCount = arguments.length,
+                args = toArray(arguments),
                 value
             while (length--) {
-                if (argCount > 0) {
+                if (args > 0) {
                     this[length].innerHTML = args
                     return this
                 } else {
@@ -57,10 +61,10 @@
                 }
             }
         },
-        val(...args) {
-            var argCount = arguments.length,
+        val() {
+            var args = toArray(arguments),
                 value
-            if (argCount > 0) {
+            if (args > 0) {
                 this[0].value = args
                 return this
             } else {
@@ -68,10 +72,10 @@
                 return value
             }
         },
-        html(...args) {
-            var argCount = arguments.length,
+        html() {
+            var args = toArray(arguments),
                 value
-            if (argCount > 0) {
+            if (args > 0) {
                 this[0].appendChild(args)
                 return this
             } else {
