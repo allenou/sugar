@@ -29,18 +29,20 @@
                 this[length].style.display = 'block'
             }
         },
-        css: function () {
-            var length = this.length,
-                args = toArray(arguments),
-                attr, value
+        css: function (property, value) {
+            var length = this.length
             while (length--) {
-                if (args.length > 1) {
-                    attr = args[0]
-                    value = args[1]
-                    this[length].style[attr] = value
+                if (typeof (property) == 'string') {
+                    if (value !== undefined) {
+                        this[length].style[property] = value
+                    } else {
+                        return window.getComputedStyle(this[length], null)[property]
+                    }
                 } else {
-                    value = window.getComputedStyle(this[length], null)[args[0]]
-                    return value
+                    var key
+                    for (key in property) {
+                        this[length].style[key] = property[key]
+                    }
                 }
             }
         },
