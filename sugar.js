@@ -46,36 +46,28 @@
                 }
             }
         },
-        text() {
-            var length = this.length,
-                args = toArray(arguments),
-                value
+        text(text) {
+            var length = this.length
             while (length--) {
-                if (args > 0) {
-                    this[length].innerHTML = args
+                if (text) {
+                    this[length].textContent = text
                 } else {
-                    value = this[length].innerHTML
-                    return value
+                    return this[length].textContent
                 }
             }
         },
-        val() {
-            var args = toArray(arguments),
-                value
-            if (args > 0) {
-                this[0].value = args
+        val(value) {
+            if (value) {
+                this[0].value = value
             } else {
-                value = this[0].value
-                return value
+                return this[0].value
             }
         },
-        html() {
-            var args = toArray(arguments),
-                value
-            if (args > 0) {
-                this[0].appendChild(args)
+        html(html) {
+            if (html) {
+                this[0].appendChild(html)
             } else {
-                value = this[0].childNodes
+                var value = this[0].childNodes
                 return value
             }
         }

@@ -21,19 +21,25 @@
 
 <body>
     <div class="sugar">sugar</div>
-    <div class="sugar">sugar</div>
-
     <input type="text" id="password" value="dogou">
     <script src="./sugar.js"></script>
     <script>
         var sugar = $('.sugar');
+
+        sugar.css('width')
+        sugar.css('width', '500px')
         sugar.css({
             "color": "red",
-            "background": "blue"
+            "background-color": "blue"
         })
-        sugar.css('width','500px')
-        
-        sugar.css('width')
+
+        sugar.text();
+        sugar.text('hello world')
+        var password = $('#password')
+        password.val();
+        password.val(914);
+
+        $('.sugar').html('<h1>dog</h1>')
     </script>
 </body>
 
