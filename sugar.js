@@ -65,10 +65,9 @@
         },
         html(html) {
             if (html) {
-                this[0].appendChild(html)
+                this[0].innerHTML = html
             } else {
-                var value = this[0].childNodes
-                return value
+                return this[0].textContent
             }
         }
     };
