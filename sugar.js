@@ -39,6 +39,12 @@
                 this[length].style.display = 'block'
             }
         },
+        addClass: function (className) {
+            var length = this.length
+            while (length--) {
+                this[length].className += this[length].className.length > 0 ? ' ' + className : className
+            }
+        },
         css: function (property, value) {
             var length = this.length
             while (length--) {
