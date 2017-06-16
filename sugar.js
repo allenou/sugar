@@ -39,12 +39,28 @@
                 this[length].style.display = 'block'
             }
         },
-        addClass: function (className) {
+        addClass: function (name) {
             var length = this.length
             while (length--) {
-                this[length].className += this[length].className.length > 0 ? ' ' + className : className
+                this[length].className += this[length].className.length > 0 ? ' ' + name : name
             }
         },
+        removeClass: function (name) {
+            var length = this.length,
+                element, className
+            while (length--) {
+                element = this[length]
+                className = element.className
+                if (element.getAttribute('class')) {
+                    if (className.indexOf(' ') != -1) {
+                        element.className = className.replace(' ' + name, '')
+                    } else {
+                        element.removeAttribute('class')
+                    }
+                }
+            }
+        },
+        
         css: function (property, value) {
             var length = this.length
             while (length--) {
