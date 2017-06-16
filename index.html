@@ -25,29 +25,27 @@
     <input type="text" id="password" value="dogou">
     <script src="./sugar.js"></script>
     <script>
-        $(document).ready(function(){
-            
+        $(document).ready(function () {
+            var sugar = $('.sugar');
+
+            sugar.css('width')
+            sugar.css('width', '500px')
+            sugar.css({
+                "color": "red",
+                "background-color": "blue"
+            })
+
+            sugar.text();
+            sugar.text('hello world')
+            var password = $('#password')
+            password.val();
+            password.val(914);
+
+            $('.sugar').html('<h1>dog</h1>')
+            $('.sugar').html()
+
+            var els = $('div').css('background', 'pink')
         })
-        var sugar = $('.sugar');
-
-        sugar.css('width')
-        sugar.css('width', '500px')
-        sugar.css({
-            "color": "red",
-            "background-color": "blue"
-        })
-
-        sugar.text();
-        sugar.text('hello world')
-        var password = $('#password')
-        password.val();
-        password.val(914);
-
-        $('.sugar').html('<h1>dog</h1>')
-        $('.sugar').html()
-
-        var els=$('div').css('background','pink')
-        
     </script>
 </body>
 

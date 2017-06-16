@@ -11,10 +11,8 @@
             for (; length = nodes.length, i < length; i++) {
                 this[i] = nodes[i];
             }
-            return this
-        } else {
-
         }
+        return this
     }
 
     function toArray(obj) {
@@ -22,7 +20,12 @@
     }
     $.fn = Sugar.prototype = {
         ready: function (callback) {
-            window.addEventListener('onreadystatechange', callback)
+            var document = this
+            if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+                callback();
+            } else {
+                document.addEventListener('DOMContentLoaded', callback);
+            }
         },
         hide: function () {
             var length = this.length
