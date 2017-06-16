@@ -39,6 +39,13 @@
                 this[length].style.display = 'block'
             }
         },
+        hasClass: function (name) {
+            if (this[0].className.indexOf(name) !== -1) {
+                return true
+            } else {
+                return false
+            }
+        },
         addClass: function (name) {
             var length = this.length
             while (length--) {
@@ -59,13 +66,10 @@
             }
         },
         toggleClass: function (name) {
-            var length = this.length
-            while (length--) {
-                if (this[length].className.indexOf(name) !== -1) {
-                    this.removeClass(name)
-                } else {
-                    this.addClass(name)
-                }
+            if (this.hasClass(name)) {
+                this.removeClass(name)
+            } else {
+                this.addClass(name)
             }
         },
         css: function (property, value) {
