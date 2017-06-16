@@ -51,16 +51,13 @@
             while (length--) {
                 element = this[length]
                 className = element.className
-                if (element.getAttribute('class')) {
-                    if (className.indexOf(' ') != -1) {
-                        element.className = className.replace(' ' + name, '')
-                    } else {
-                        element.removeAttribute('class')
-                    }
+                if (name === undefined || className.indexOf(' ') === -1) {
+                    element.removeAttribute('class')
+                } else {
+                    element.className = className.replace(' ' + name, '')
                 }
             }
         },
-        
         css: function (property, value) {
             var length = this.length
             while (length--) {
