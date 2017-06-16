@@ -58,6 +58,16 @@
                 }
             }
         },
+        toggleClass: function (name) {
+            var length = this.length
+            while (length--) {
+                if (this[length].className.indexOf(name) !== -1) {
+                    this.removeClass(name)
+                } else {
+                    this.addClass(name)
+                }
+            }
+        },
         css: function (property, value) {
             var length = this.length
             while (length--) {
