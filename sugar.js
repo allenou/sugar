@@ -47,21 +47,34 @@
             }
         },
         addClass: function (name) {
-            var length = this.length
-            while (length--) {
-                this[length].className += this[length].className.length > 0 ? ' ' + name : name
+            var length = this.length,
+                element
+            if (name && typeof (name) === 'string') {
+                while (length--) {
+                    element = this[length]
+                    //If the element type is ELEMENT_NODE
+                    if (element.nodeType === 1) {
+                        element.className += element.className ? ' ' + name : name
+                    }
+                }
             }
         },
         removeClass: function (name) {
             var length = this.length,
                 element, className
-            while (length--) {
-                element = this[length]
-                className = element.className
-                if (name === undefined || className.indexOf(' ') === -1) {
-                    element.removeAttribute('class')
-                } else {
-                    element.className = className.replace(' ' + name, '')
+            if (name && typeof (name) === 'string') {
+                while (length--) {
+                    element = this[length]
+                    className = element.className
+                    //If the element type is ELEMENT_NODE and have class
+                    if (element.nodeType === 1 && className) {
+                        //If not have class or have only one class
+                        if (!name || className.indexOf(' ') === -1) {
+                            element.removeAttribute('class')
+                        } else {
+                            element.className = className.replace(' ' + name, '')
+                        }
+                    }
                 }
             }
         },
