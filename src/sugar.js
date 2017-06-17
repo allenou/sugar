@@ -11,8 +11,11 @@
             for (; length = nodes.length, i < length; i++) {
                 this[i] = nodes[i];
             }
+            return this
         }
-        return this
+        if (els.nodeType === 9) {
+            return document;
+        }
     }
 
     function toArray(obj) {
@@ -92,7 +95,7 @@
                     if (value !== undefined) {
                         this[length].style[property] = value
                     } else {
-                        return window.getComputedStyle(this[length], null)[property]
+                        return getComputedStyle(this[length], null).getPropertyValue(property) //IE 9+ 
                     }
                 } else {
                     var key
