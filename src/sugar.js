@@ -1,4 +1,5 @@
 (function () {
+    'use strict';
     var $ = function (s) {
         return new Sugar(s);
     }
