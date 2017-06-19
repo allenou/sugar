@@ -2,9 +2,13 @@
     var $ = function (s) {
         return new Sugar(s);
     }
-    var Sugar = function (els) {
-        if (typeof (els) == 'string') {
-            var nodes = document.querySelectorAll(els),
+    var Sugar = function (selector) {
+        // HANDLE: $(""), $(null), $(undefined), $(false)
+        if (!selector) {
+            return this
+        }
+        if (typeof (selector) == 'string') {
+            var nodes = document.querySelectorAll(selector),
                 i = 0,
                 length
             this.length = nodes.length
@@ -12,9 +16,6 @@
                 this[i] = nodes[i];
             }
             return this
-        }
-        if (els.nodeType === 9) {
-            return document;
         }
     }
 
@@ -35,12 +36,14 @@
             while (length--) {
                 this[length].style.display = 'none'
             }
+            return this
         },
         show: function () {
             var length = this.length
             while (length--) {
                 this[length].style.display = 'block'
             }
+            return this
         },
         hasClass: function (name) {
             if (this[0].className.indexOf(name) !== -1) {
@@ -60,6 +63,7 @@
                         element.className += element.className ? ' ' + name : name
                     }
                 }
+                return this
             }
         },
         removeClass: function (name) {
@@ -79,6 +83,7 @@
                         }
                     }
                 }
+                return this
             }
         },
         toggleClass: function (name) {
@@ -104,6 +109,7 @@
                     }
                 }
             }
+            return this
         },
         text: function (text) {
             var length = this.length
@@ -114,6 +120,7 @@
                     return this[length].textContent
                 }
             }
+            return this
         },
         val: function (value) {
             if (value) {

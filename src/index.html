@@ -21,29 +21,32 @@
 
 <body>
     <div class="sugar candy sweet">sugar</div>
-    <div class="">sugar</div>
+    <div class="sugar">sugar</div>
     <input type="text" id="password" value="dogou">
     <script src="./sugar.js"></script>
     <script>
         $(document).ready(function () {
             console.log(this)
             var sugar = $('.sugar');
-            sugar.css('width')
-            sugar.css('width', '500px')
-            sugar.css({
-                "color": "red",
-                "background-color": "blue"
-            })
-            var els = $('div').css('background', 'pink')
-            // $('div').addClass('honey')
-            $('div').removeClass('candy')
-            // $('div').toggleClass('candy')
-            // $('div').hasClass('candy')
-            sugar.text();
-            sugar.text('hello world')
-            var password = $('#password')
-            password.val();
-            password.val(914);
+            // let width = sugar.css('width')
+            var height=sugar.css('width', '500px').text('hello world').css('height')
+            var io
+            var text=sugar.text(io)
+            console.log(text)
+            // sugar.css({
+            //     "color": "red",
+            //     "background-color": "blue"
+            // })
+            // var els = $('div').css('background', 'pink')
+            // // $('div').addClass('honey')
+            // $('div').removeClass('candy')
+            // // $('div').toggleClass('candy')
+            // // $('div').hasClass('candy')
+            // sugar.text();
+            // sugar.text('hello world')
+            // var password = $('#password')
+            // password.val();
+            // password.val(914);
 
             // $('.sugar').html('<h1>dog</h1>')
             // $('.sugar').html()
