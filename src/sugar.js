@@ -1,31 +1,30 @@
 (function () {
     'use strict';
-    var $ = function (s) {
-        return new Sugar(s);
-    }
-    var Sugar = function (selector) {
-        // HANDLE: $(""), $(null), $(undefined), $(false)
-        if (!selector) {
-            return this
-        }
-        if (typeof (selector) == 'string') {
-            var nodes = document.querySelectorAll(selector),
-                i = 0,
-                length
-            this.length = nodes.length
-            for (; length = nodes.length, i < length; i++) {
-                this[i] = nodes[i];
-            }
-            return this
-        }
+    var Sugar = function (selector, context) {
+        return new Sugar.fn.init(selector, context);
     }
 
     function toArray(obj) {
         return Array.prototype.slice.call(obj)
     }
-    $.fn = Sugar.prototype = {
+    Sugar.fn = {
+        init: function (selector, context) {
+            // HANDLE: $(""), $(null), $(undefined), $(false)
+            if (!selector) {
+                return this
+            }
+            if (typeof (selector) == 'string') {
+                var nodes = document.querySelectorAll(selector),
+                    i = 0,
+                    length
+                this.length = nodes.length
+                for (; length = nodes.length, i < length; i++) {
+                    this[i] = nodes[i];
+                }
+                return this
+            }
+        },
         ready: function (callback) {
-            var document = this
             if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
                 callback();
             } else {
@@ -138,6 +137,6 @@
             }
         }
     };
-    if (!window.$)
-        window.$ = $
+    Sugar.fn.init.prototype = Sugar.fn
+    Sugar ? window.$ = Sugar : undefined
 }())
