@@ -1,5 +1,6 @@
 (function () {
     'use strict';
+
     var Sugar = function (selector, context) {
         return new Sugar.fn.init(selector, context);
     }
@@ -7,10 +8,14 @@
     function toArray(obj) {
         return Array.prototype.slice.call(obj)
     }
+
+    function isFunction(obj) {
+        return typeof (obj)
+    }
     Sugar.fn = {
         init: function (selector, context) {
-            // HANDLE: $(""), $(null), $(undefined), $(false)
-            if (!selector) {
+            // HANDLE: $(""), $(null), $(undefined), $(false) ||$(DOMElement)
+            if (!selector || selector.nodeType) {
                 return this
             }
             if (typeof (selector) == 'string') {
@@ -22,6 +27,9 @@
                     this[i] = nodes[i];
                 }
                 return this
+                // HANDLE: $(function)
+            } else if (isFunction(selector)) {
+                this.ready(selector)
             }
         },
         ready: function (callback) {
@@ -134,6 +142,18 @@
                 this[0].innerHTML = html
             } else {
                 return this[0].textContent
+            }
+        },
+        append: function (element) {
+            var length = this.length
+            if (!element) {
+                return this
+            }
+
+            while (length--) {
+                if (this[length].nodeType === 1) {
+                    this[length].appendChild(element)
+                }
             }
         }
     };

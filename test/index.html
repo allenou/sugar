@@ -1,32 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Mocha</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="mocha.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #sugar {
+            width: 100px;
+            height: 100px;
+            /*background-color: lightblue;*/
+        }
+
+        .sugar {
+            background-color: lightblue;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="mocha"></div>
-  <script src="../src/sugar.js">
-  </script>
-  <script src="mocha.js"></script>
-  <script>
-    mocha.setup('bdd');
-  </script>
+    <div class="sugar candy sweet">sugar</div>
+    <div class="sugar">sugar</div>
+    <input type="text" id="password" value="dogou">
+    <script src="../src/sugar.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log(this)
+            var sugar = $('.sugar');
+            // let width = sugar.css('width')
+            var height = sugar.css('width', '500px').text('hello world').css('height')
+            sugar.append('<span>span</span>')
+            var text = sugar.text(io)
+            console.log(text)
+            // sugar.css({
+            //     "color": "red",
+            //     "background-color": "blue"
+            // })
+            // var els = $('div').css('background', 'pink')
+            // // $('div').addClass('honey')
+            // $('div').removeClass('candy')
+            // // $('div').toggleClass('candy')
+            // // $('div').hasClass('candy')
+            // sugar.text();
+            // sugar.text('hello world')
+            // var password = $('#password')
+            // password.val();
+            // password.val(914);
 
-  <script src="tests.js"></script>
-  <script>
-    mocha.checkLeaks();
-    mocha.globals(['Sugar']);
-    if (window.mochaPhantomJS) {
-      mochaPhantomJS.run();
-    } else {
-      mocha.run();
-    }
-  </script>
+            // $('.sugar').html('<h1>dog</h1>')
+            // $('.sugar').html()
+
+
+        })
+        $(function(){
+            console.log(this)
+        })
+    </script>
 </body>
 
 </html>

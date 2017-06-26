@@ -10,11 +10,17 @@
 
 <body>
     <div class="jquery">11111</div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
     <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
         //   var text= $('.jquery').css('background','red').text()
           var text=$('.jquery').text(null)
+          alert($('li').toArray());
         })
     </script>
 </body>
