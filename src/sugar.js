@@ -10,7 +10,11 @@
     }
 
     function isFunction(obj) {
-        return typeof (obj)
+        return typeof (obj) === 'function'
+    }
+
+    function isString(obj) {
+        return typeof (obj) === 'string'
     }
     Sugar.fn = {
         init: function (selector, context) {
@@ -18,7 +22,7 @@
             if (!selector || selector.nodeType) {
                 return this
             }
-            if (typeof (selector) == 'string') {
+            if (isString(selector)) {
                 var nodes = document.querySelectorAll(selector),
                     i = 0,
                     length
@@ -40,16 +44,17 @@
             }
         },
         hide: function () {
-            var length = this.length
-            while (length--) {
-                this[length].style.display = 'none'
+            var element, i = 0
+            while ((element = this[i++])) {
+                element.style.display = 'none'
             }
+
             return this
         },
         show: function () {
-            var length = this.length
-            while (length--) {
-                this[length].style.display = 'block'
+            var element, i = 0
+            while ((element = this[i++])) {
+                element.style.display = 'block'
             }
             return this
         },
@@ -61,11 +66,9 @@
             }
         },
         addClass: function (name) {
-            var length = this.length,
-                element
-            if (name && typeof (name) === 'string') {
-                while (length--) {
-                    element = this[length]
+            var element, i = 0
+            if (name && isString(name)) {
+                while ((element = this[i++])) {
                     //If the element type is ELEMENT_NODE
                     if (element.nodeType === 1) {
                         element.className += element.className ? ' ' + name : name
@@ -75,16 +78,15 @@
             }
         },
         removeClass: function (name) {
-            var length = this.length,
-                element, className
-            if (name && typeof (name) === 'string') {
-                while (length--) {
-                    element = this[length]
+            var element, i = 0,
+                className
+            if (name && isString(name)) {
+                while ((element = this[i++])) {
                     className = element.className
                     //If the element type is ELEMENT_NODE and have class
                     if (element.nodeType === 1 && className) {
                         //If not have class or have only one class
-                        if (!name || className.indexOf(' ') === -1) {
+                        if (!className || className.indexOf(' ') === -1) {
                             element.removeAttribute('class')
                         } else {
                             element.className = className.replace(' ' + name, '')
@@ -102,30 +104,30 @@
             }
         },
         css: function (property, value) {
-            var length = this.length
-            while (length--) {
-                if (typeof (property) == 'string') {
+            var element, i = 0
+            while ((element = this[i++])) {
+                if (isString(property)) {
                     if (value !== undefined) {
-                        this[length].style[property] = value
+                        element.style[property] = value
                     } else {
-                        return getComputedStyle(this[length], null).getPropertyValue(property) //IE 9+ 
+                        return getComputedStyle(element, null).getPropertyValue(property) //IE 9+ 
                     }
                 } else {
                     var key
                     for (key in property) {
-                        this[length].style[key] = property[key]
+                        element.style[key] = property[key]
                     }
                 }
             }
             return this
         },
         text: function (text) {
-            var length = this.length
-            while (length--) {
+            var element, i = 0
+            while ((element = this[i++])) {
                 if (text) {
-                    this[length].textContent = text
+                    element.textContent = text
                 } else {
-                    return this[length].textContent
+                    return element.textContent
                 }
             }
             return this
@@ -144,19 +146,18 @@
                 return this[0].textContent
             }
         },
-        append: function (element) {
-            var length = this.length
-            if (!element) {
+        append: function (tag) {
+            var element, i = 0
+            if (!tag) {
                 return this
             }
-
-            while (length--) {
-                if (this[length].nodeType === 1) {
-                    this[length].appendChild(element)
+            while ((element = this[i++])) {
+                if (element.nodeType === 1) {
+                    element.appendChild(tag)
                 }
             }
         }
     };
     Sugar.fn.init.prototype = Sugar.fn
-    Sugar ? window.$ = Sugar : undefined
-}())
+    window.Sugar = window.$ = Sugar;
+}(window))
