@@ -101,6 +101,7 @@
             } else {
                 this.addClass(name)
             }
+            return this
         },
         css: function (property, value) {
             var element, i = 0
@@ -132,31 +133,33 @@
             return this
         },
         val: function (value) {
-            if (value) {
+            if (value && isString(html)) {
                 this[0].value = value
             } else {
                 return this[0].value
             }
+            return this
         },
         html: function (html) {
-            if (html) {
+            if (html && isString(html)) {
                 this[0].innerHTML = html
             } else {
                 return this[0].textContent
             }
+            return this
         },
         append: function (html) {
-            if (!html) {
-                return this
-            }
-            var element, i = 0,
-                tmp = document.createElement('div')
-            while ((element = this[i++])) {
-                tmp.innerHTML = html
-                if (element.nodeType === 1) {
-                    element.appendChild(tmp.firstChild)
+            if (html && isString(html)) {
+                var element, i = 0,
+                    tmp = document.createElement('div')
+                while ((element = this[i++])) {
+                    tmp.innerHTML = html
+                    if (element.nodeType === 1) {
+                        element.appendChild(tmp.firstChild)
+                    }
                 }
             }
+            return this
             //https://davidwalsh.name/convert-html-stings-dom-nodes ->DOMParser|createDocumentFragment|ContextualFragment
             //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
         }
