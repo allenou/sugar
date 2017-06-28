@@ -48,7 +48,6 @@
             while ((element = this[i++])) {
                 element.style.display = 'none'
             }
-
             return this
         },
         show: function () {
@@ -74,8 +73,8 @@
                         element.className += element.className ? ' ' + name : name
                     }
                 }
-                return this
             }
+            return this
         },
         removeClass: function (name) {
             var element, i = 0,
@@ -84,7 +83,7 @@
                 while ((element = this[i++])) {
                     className = element.className
                     //If the element type is ELEMENT_NODE and have class
-                    if (element.nodeType === 1 && className) {
+                    if (element.nodeType === 1) {
                         //If not have class or have only one class
                         if (!className || className.indexOf(' ') === -1) {
                             element.removeAttribute('class')
@@ -93,8 +92,8 @@
                         }
                     }
                 }
-                return this
             }
+            return this
         },
         toggleClass: function (name) {
             if (this.hasClass(name)) {
@@ -153,7 +152,7 @@
             }
             while ((element = this[i++])) {
                 if (element.nodeType === 1) {
-                    element.appendChild(tag)
+                   element.appendChild(tag)
                 }
             }
         }
