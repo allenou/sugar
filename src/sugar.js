@@ -145,16 +145,20 @@
                 return this[0].textContent
             }
         },
-        append: function (tag) {
-            var element, i = 0
-            if (!tag) {
+        append: function (html) {
+            if (!html) {
                 return this
             }
+            var element, i = 0,
+                tmp = document.createElement('div')
             while ((element = this[i++])) {
+                tmp.innerHTML = html
                 if (element.nodeType === 1) {
-                   element.appendChild(tag)
+                    element.appendChild(tmp.firstChild)
                 }
             }
+            //https://davidwalsh.name/convert-html-stings-dom-nodes ->DOMParser|createDocumentFragment|ContextualFragment
+            //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
         }
     };
     Sugar.fn.init.prototype = Sugar.fn
