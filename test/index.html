@@ -31,6 +31,8 @@
             // let width = sugar.css('width')
             var height = sugar.css('width', '500px').text('hello world').css('height')
             sugar.append('<span>span</span>')
+            console.log($('body').find('.sugar'))
+
             // var text = sugar.text(io)
             // console.log(text)
             // sugar.css({
@@ -50,6 +52,10 @@
 
             // $('.sugar').html('<h1>dog</h1>')
             // $('.sugar').html()
+            $('.sugar').on('click',function(event){
+                 console.log(event)
+               
+            })
 
         })
     </script>

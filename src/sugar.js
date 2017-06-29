@@ -43,6 +43,18 @@
                 document.addEventListener('DOMContentLoaded', fn);
             }
         },
+        find: function (selector) {
+            var element, i = 0,
+                childs,
+                allChilds = []
+            if (isString(selector)) {
+                while ((element = this[i++])) {
+                    childs = element.querySelectorAll(selector)
+                    all.push(s)
+                }
+                return allChilds;
+            }
+        },
         hide: function () {
             var element, i = 0
             while ((element = this[i++])) {
@@ -107,12 +119,15 @@
             var element, i = 0
             while ((element = this[i++])) {
                 if (isString(property)) {
-                    if (value !== undefined) {
+                    //HANDLE:$('div').css('width','200px')
+                    if (value) {
                         element.style[property] = value
                     } else {
+                        //HANDLE:$('div').css('width')
                         return getComputedStyle(element, null).getPropertyValue(property) //IE 9+ 
                     }
                 } else {
+                    //HANDLE:$('div').css({'width':'200px','height':'200px'})
                     var key
                     for (key in property) {
                         element.style[key] = property[key]
@@ -123,32 +138,39 @@
         },
         text: function (text) {
             var element, i = 0
+            //HANDLE:$('div').text('Sugar')
             while ((element = this[i++])) {
                 if (text) {
                     element.textContent = text
                 } else {
+                    //HANDLE:$('div').text()
                     return element.textContent
                 }
             }
             return this
         },
         val: function (value) {
+            //HANDLE:$('input').val('Sugar')
             if (isString(value)) {
                 this[0].value = value
             } else {
+                //HANDLE:$('input').val()
                 return this[0].value
             }
             return this
         },
         html: function (html) {
+            //HANDLE:$('div').html('<h1>Sugar</h1>')
             if (isString(html)) {
                 this[0].innerHTML = html
             } else {
+                //HANDLE:$('div').html()
                 return this[0].textContent
             }
             return this
         },
         append: function (html) {
+            //HANDLE:$('div').append('<h1>Sugar</h1>')
             if (isString(html)) {
                 var element, i = 0,
                     tmp = document.createElement('div')
@@ -164,22 +186,25 @@
             //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
         },
         on: function (types, selector, fn) {
-            //$('ul').on('click')
-            if (isStirng(types)) {
+            //HANDLE:$('ul').on('click')
+            if (isString(types)) {
                 var element, i = 0
-                //$('ul').on('click',function(){})
+                //HANDLE:$('ul').on('click',function(){})
                 if (!fn && isFunction(selector)) {
                     fn = selector
                     while ((element = this[i++])) {
-                        element.addEventListener(types, fn)
+                        if (element.nodeType === 1) {
+                            element.addEventListener(types, fn)
+                        }
                     }
                 }
-                //$('ul').on('click','li',function(){})
+                //HANDLE:$('ul').on('click','li',function(){})
                 if (isString(selector) && isFunction(fn)) {
-                
+
                 }
             }
             return this
+            //http://www.cnblogs.com/ziyunfei/p/5545439.html
         }
     };
     Sugar.fn.init.prototype = Sugar.fn
