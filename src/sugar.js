@@ -36,11 +36,11 @@
                 this.ready(selector)
             }
         },
-        ready: function (callback) {
+        ready: function (fn) {
             if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
                 callback();
             } else {
-                document.addEventListener('DOMContentLoaded', callback);
+                document.addEventListener('DOMContentLoaded', fn);
             }
         },
         hide: function () {
@@ -66,7 +66,7 @@
         },
         addClass: function (name) {
             var element, i = 0
-            if (name && isString(name)) {
+            if (isString(name)) {
                 while ((element = this[i++])) {
                     //If the element type is ELEMENT_NODE
                     if (element.nodeType === 1) {
@@ -79,7 +79,7 @@
         removeClass: function (name) {
             var element, i = 0,
                 className
-            if (name && isString(name)) {
+            if (isString(name)) {
                 while ((element = this[i++])) {
                     className = element.className
                     //If the element type is ELEMENT_NODE and have class
@@ -133,7 +133,7 @@
             return this
         },
         val: function (value) {
-            if (value && isString(html)) {
+            if (isString(value)) {
                 this[0].value = value
             } else {
                 return this[0].value
@@ -141,7 +141,7 @@
             return this
         },
         html: function (html) {
-            if (html && isString(html)) {
+            if (isString(html)) {
                 this[0].innerHTML = html
             } else {
                 return this[0].textContent
@@ -149,7 +149,7 @@
             return this
         },
         append: function (html) {
-            if (html && isString(html)) {
+            if (isString(html)) {
                 var element, i = 0,
                     tmp = document.createElement('div')
                 while ((element = this[i++])) {
@@ -162,6 +162,24 @@
             return this
             //https://davidwalsh.name/convert-html-stings-dom-nodes ->DOMParser|createDocumentFragment|ContextualFragment
             //https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
+        },
+        on: function (types, selector, fn) {
+            //$('ul').on('click')
+            if (isStirng(types)) {
+                var element, i = 0
+                //$('ul').on('click',function(){})
+                if (!fn && isFunction(selector)) {
+                    fn = selector
+                    while ((element = this[i++])) {
+                        element.addEventListener(types, fn)
+                    }
+                }
+                //$('ul').on('click','li',function(){})
+                if (isString(selector) && isFunction(fn)) {
+                
+                }
+            }
+            return this
         }
     };
     Sugar.fn.init.prototype = Sugar.fn
