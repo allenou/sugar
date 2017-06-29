@@ -50,7 +50,7 @@
             if (isString(selector)) {
                 while ((element = this[i++])) {
                     childs = element.querySelectorAll(selector)
-                    all.push(s)
+                    allChilds.push(childs)
                 }
                 return allChilds;
             }
@@ -189,18 +189,18 @@
             //HANDLE:$('ul').on('click')
             if (isString(types)) {
                 var element, i = 0
-                //HANDLE:$('ul').on('click',function(){})
-                if (!fn && isFunction(selector)) {
-                    fn = selector
-                    while ((element = this[i++])) {
-                        if (element.nodeType === 1) {
+                while ((element = this[i++])) {
+                    if (element.nodeType === 1) {
+                        //HANDLE:$('ul').on('click',function(){})
+                        if (!fn && isFunction(selector)) {
+                            fn = selector
                             element.addEventListener(types, fn)
                         }
+                        //HANDLE:$('ul').on('click','li',function(){})
+                        // if (isString(selector) && isFunction(fn)) {
+                        //       console.log(1)
+                        // }
                     }
-                }
-                //HANDLE:$('ul').on('click','li',function(){})
-                if (isString(selector) && isFunction(fn)) {
-
                 }
             }
             return this
