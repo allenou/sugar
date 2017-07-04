@@ -22,6 +22,11 @@
 <body>
     <div class="sugar candy sweet">sugar</div>
     <div class="sugar">sugar</div>
+    <ul>
+        <li class="1">1</li>
+        <li class="2">2</li>
+        <li class="3">3</li>
+    </ul>
     <input type="text" id="password" value="dogou">
     <script src="../src/sugar.js"></script>
     <script>
@@ -31,7 +36,7 @@
             // let width = sugar.css('width')
             var height = sugar.css('width', '500px').text('hello world').css('height')
             sugar.append('<span>span</span>')
-            console.log($('body').find('.sugar'))
+            // console.log($('body').find('.sugar'))
 
             // var text = sugar.text(io)
             // console.log(text)
@@ -40,7 +45,7 @@
             //     "background-color": "blue"
             // })
             // var els = $('div').css('background', 'pink')
-            // // $('div').addClass('honey')
+            $('div').addClass('honey')
             // $('div').removeClass('candy')
             // // $('div').toggleClass('candy')
             // // $('div').hasClass('candy')
@@ -52,10 +57,9 @@
 
             // $('.sugar').html('<h1>dog</h1>')
             // $('.sugar').html()
-            $('.sugar').on('click',function(event){
-                 console.log(event)
+            $('ul').on('click', 'li', function (event) {
+                // console.log(event.target.className)
                  console.log($(this))
-               
             })
 
         })

@@ -1,4 +1,4 @@
-(function () {
+(function (window, undefined) {
     'use strict';
 
     var Sugar = function (selector, context) {
@@ -197,9 +197,14 @@
                             element.addEventListener(types, fn)
                         }
                         //HANDLE:$('ul').on('click','li',function(){})
-                        // if (isString(selector) && isFunction(fn)) {
-                        //       console.log(1)
-                        // }
+                        if (isString(selector) && isFunction(fn)) {
+                            var childs = element.querySelectorAll(selector),
+                                child,
+                                j = 0;
+                            while ((child = childs[j++])) {
+                                child.addEventListener(types, fn)
+                            }
+                        }
                     }
                 }
             }
@@ -208,5 +213,22 @@
         }
     };
     Sugar.fn.init.prototype = Sugar.fn
+    // Sugar.extend = Sugar.fn.extend = function () {
+
+    // }
+    // Sugar.fn.extend = {
+    //     addClass: function (name) {
+    //         var element, i = 0
+    //         if (isString(name)) {
+    //             while ((element = this[i++])) {
+    //                 //If the element type is ELEMENT_NODE
+    //                 if (element.nodeType === 1) {
+    //                     element.className += element.className ? ' ' + name : name
+    //                 }
+    //             }
+    //         }
+    //         return this
+    //     }
+    // }
     window.Sugar = window.$ = Sugar;
 }(window))

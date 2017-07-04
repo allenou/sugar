@@ -27,8 +27,10 @@
           var text=$('.jquery').text(null)
         
          console.log( $('ul').find('li'))
-         $('ul').click(function(){
+         $('ul').on('click','li',function(event){
              console.log($(this))
+         
+             
          })
         })
     </script>
