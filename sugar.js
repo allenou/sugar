@@ -140,12 +140,11 @@
             var element, i = 0
             //HANDLE:$('div').text('Sugar')
             while ((element = this[i++])) {
-                if (text) {
-                    element.textContent = text
-                } else {
+                if (text === void 0) {
                     //HANDLE:$('div').text()
                     return element.textContent
                 }
+                element.textContent = '' + text
             }
             return this
         },
